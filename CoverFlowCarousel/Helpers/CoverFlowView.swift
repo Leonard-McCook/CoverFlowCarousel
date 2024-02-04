@@ -9,7 +9,10 @@ import SwiftUI
 
 /// Custom View
 struct CoverFlowView<Content: View, Item: RandomAccessCollection>: View where Item.Element: Identifiable {
+    /// Custom Properties
     var itemWidth: CGFloat
+    var spacing: CGFloat = 0
+    var rotation: Double
     var items: Item
     var content: (Item.Element) -> Content
     var body: some View {
@@ -24,7 +27,10 @@ struct CoverFlowView<Content: View, Item: RandomAccessCollection>: View where It
                     }
                 }
                 .padding(.horizontal, (size.width - itemWidth) / 2)
+                .scrollTargetLayout()
             }
+            .scrollTargetBehavior(.viewAligned)
+            .scrollIndicators(.hidden)
         }
     }
 }
