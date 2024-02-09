@@ -31,6 +31,7 @@ struct CoverFlowView<Content: View, Item: RandomAccessCollection>: View where It
                                     .rotation3DEffect(.init(degrees: rotation(geometryProxy)),
                                                       axis: (x: 0, y: 1, z: 0), anchor: .center)
                             }
+                            .padding(.trailing, item.id == items.last?.id ? 0 : spacing)
                     }
                 }
                 .padding(.horizontal, (size.width - itemWidth) / 2)
@@ -49,8 +50,11 @@ struct CoverFlowView<Content: View, Item: RandomAccessCollection>: View where It
         let progress = midX / scrollViewWidth
         /// Limiting Progress between 0-1
         let cappedProgress = max(min(progress, 1), 0)
+        /// Limiting Rotation between 0-90
+        let cappedRotation = max(min(rotation, 90), 0)
+        let degree = cappedProgress * (cappedRotation * 2)
         
-        return cappedProgress * rotation 
+        return cappedRotation - degree
     }
 }
 

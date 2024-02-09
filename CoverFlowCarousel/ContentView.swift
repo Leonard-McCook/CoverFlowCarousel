@@ -42,13 +42,13 @@ struct ContentView: View {
                         .font(.caption2)
                         .foregroundStyle(.gray)
                     
-                    Slider(value: $spacing, in: -90...20)
+                    Slider(value: $spacing, in: -120...20)
                     
                     Text ("Card Rotation")
                         .font(.caption2)
                         .foregroundStyle(.gray)
                     
-                    Slider(value: $rotation, in: 0...90)
+                    Slider(value: $rotation, in: 0...180)
                 })
                 .padding(15)
                 .background(.ultraThickMaterial, in: .rect(cornerRadius: 10))
